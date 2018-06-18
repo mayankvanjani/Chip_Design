@@ -1,0 +1,1 @@
+MATLAB code for logging data from a Hall Measurement by varying distances from the sensor to view the exponentially changed observed magnetic field
