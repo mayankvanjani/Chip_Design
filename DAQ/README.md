@@ -1,0 +1,1 @@
+Use NI-DAQ to input and output signals tested externally
