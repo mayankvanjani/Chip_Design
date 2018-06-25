@@ -1,0 +1,40 @@
+module wirein_test1
+(
+	input      hi_in,
+	output     hi_out,
+	inout      hi_inout,
+	output     hi_muxsel,
+	output     led
+);
+
+wire [7:0]  hi_in;
+wire [1:0]  hi_out;
+wire [15:0] hi_inout;
+wire        hi_muxsel;
+wire [7:0]  led;
+
+assign      hi_muxsel=1'b0;
+// Opal Kelly Module Interface Connections
+wire        ti_clk;
+wire [30:0] ok1;
+wire [16:0] ok2;
+
+// Endpoint connections:
+wire [15:0]  ep00wire;
+
+assign led[0] =  ~ep00wire[0];
+assign led[1] =  ~ep00wire[1];
+assign led[2] =  ~ep00wire[2];
+assign led[3] =  ~ep00wire[3];
+assign led[4] =  ~ep00wire[4];
+assign led[5] =  ~ep00wire[5];
+assign led[6] =  ~ep00wire[6];
+assign led[7] =  ~ep00wire[7];
+
+okHost okHI(
+	.hi_in(hi_in), .hi_out(hi_out), .hi_inout(hi_inout), .ti_clk(ti_clk),
+	.ok1(ok1), .ok2(ok2));
+
+okWireIn     ep00 (.ok1(ok1),                          .ep_addr(8'h00), .ep_dataout(ep00wire));
+
+endmodule

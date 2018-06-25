@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<messages>
+<msg type="warning" file="HDLCompiler" num="751" delta="old" >"D:\NYU\nanolab\FPGA\simulink_decimation_filter\deci_filter_HDLcoder\verilog\test\OUTPUT_MATLAB\wirein_test1\wirein_test1.v" Line 10: Redeclaration of ansi port <arg fmt="%s" index="1">hi_in</arg> is not allowed
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="751" delta="old" >"D:\NYU\nanolab\FPGA\simulink_decimation_filter\deci_filter_HDLcoder\verilog\test\OUTPUT_MATLAB\wirein_test1\wirein_test1.v" Line 11: Redeclaration of ansi port <arg fmt="%s" index="1">hi_out</arg> is not allowed
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="751" delta="old" >"D:\NYU\nanolab\FPGA\simulink_decimation_filter\deci_filter_HDLcoder\verilog\test\OUTPUT_MATLAB\wirein_test1\wirein_test1.v" Line 12: Redeclaration of ansi port <arg fmt="%s" index="1">hi_inout</arg> is not allowed
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="751" delta="old" >"D:\NYU\nanolab\FPGA\simulink_decimation_filter\deci_filter_HDLcoder\verilog\test\OUTPUT_MATLAB\wirein_test1\wirein_test1.v" Line 13: Redeclaration of ansi port <arg fmt="%s" index="1">hi_muxsel</arg> is not allowed
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="751" delta="old" >"D:\NYU\nanolab\FPGA\simulink_decimation_filter\deci_filter_HDLcoder\verilog\test\OUTPUT_MATLAB\wirein_test1\wirein_test1.v" Line 14: Redeclaration of ansi port <arg fmt="%s" index="1">led</arg> is not allowed
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1016" delta="new" >"D:\NYU\nanolab\FPGA\simulink_decimation_filter\deci_filter_HDLcoder\verilog\test\OUTPUT_MATLAB\wirein_test1\okLibrary.v" Line 34: Port <arg fmt="%s" index="1">CLK180</arg> is not connected to this instance
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1016" delta="new" >"D:\NYU\nanolab\FPGA\simulink_decimation_filter\deci_filter_HDLcoder\verilog\test\OUTPUT_MATLAB\wirein_test1\okLibrary.v" Line 62: Port <arg fmt="%s" index="1">BUSY</arg> is not connected to this instance
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="new" >"D:\NYU\nanolab\FPGA\simulink_decimation_filter\deci_filter_HDLcoder\verilog\test\OUTPUT_MATLAB\wirein_test1\wirein_test1.v" Line 35: Assignment to <arg fmt="%s" index="1">ti_clk</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="634" delta="new" >"D:\NYU\nanolab\FPGA\simulink_decimation_filter\deci_filter_HDLcoder\verilog\test\OUTPUT_MATLAB\wirein_test1\wirein_test1.v" Line 20: Net &lt;<arg fmt="%s" index="1">ok2[16]</arg>&gt; does not have a driver.
+</msg>
+
+<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">D:\NYU\nanolab\FPGA\simulink_decimation_filter\deci_filter_HDLcoder\verilog\test\OUTPUT_MATLAB\wirein_test1\wirein_test1.v</arg>&quot; line <arg fmt="%s" index="2">34</arg>: Output port &lt;<arg fmt="%s" index="3">ti_clk</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">okHI</arg>&gt; is unconnected or connected to loadless signal.
+</msg>
+
+<msg type="warning" file="Xst" num="653" delta="new" >Signal &lt;<arg fmt="%s" index="1">ok2</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">GND</arg>.
+</msg>
+
+</messages>
+

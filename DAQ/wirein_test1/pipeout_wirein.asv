@@ -1,0 +1,97 @@
+function varargout = pipeout_wirein(varargin)
+gui_Singleton = 1;
+gui_State = struct('gui_Name',       mfilename, ...
+                   'gui_Singleton',  gui_Singleton, ...
+                   'gui_OpeningFcn', @pipeout_wirein_OpeningFcn, ...
+                   'gui_OutputFcn',  @pipeout_wirein_OutputFcn, ...
+                   'gui_LayoutFcn',  [] , ...
+                   'gui_Callback',   []);
+if nargin && ischar(varargin{1})
+    gui_State.gui_Callback = str2func(varargin{1});
+end
+
+if nargout
+    [varargout{1:nargout}] = gui_mainfcn(gui_State, varargin{:});
+else
+    gui_mainfcn(gui_State, varargin{:});
+end
+% End initialization code - DO NOT EDIT
+
+% --- Executes just before pipein_wireout is made visible.
+function pipeout_wirein_OpeningFcn(hObject, eventdata, handles, varargin)
+% This function has no output args, see OutputFcn.
+% hObject    handle to figure
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+% varargin   command line arguments to test_wirein1 (see VARARGIN)
+
+% Choose default command line output for test_wirein1
+handles.output = hObject;
+
+% Update handles structure
+guidata(hObject, handles);
+
+% --- Outputs from this function are returned to the command line.
+function varargout = pipeout_wirein_OutputFcn(hObject, eventdata, handles) 
+% varargout  cell array for returning output args (see VARARGOUT);
+% hObject    handle to figure
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Get default command line output from handles structure
+varargout{1} = handles.output;
+
+
+% --------------------------------------------------------------------
+
+
+% --- Executes on button press in reset.
+function reset_Callback(hObject, eventdata, handles)
+% hObject    handle to reset (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in enable.
+function enable_Callback(hObject, eventdata, handles)
+% hObject    handle to enable (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in test_signal.
+function test_signal_Callback(hObject, eventdata, handles)
+% hObject    handle to test_signal (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+function frequency_Callback(hObject, eventdata, handles)
+% hObject    handle to frequency (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+freq = str2double(get(hObject,'String'));
+if isnan(freq) || ~isreal(f1)  
+    % isdouble returns NaN for non-numbers and f1 cannot be complex
+    % Disable the Plot button and change its string to say why
+    set(handles.plot_button,'String','Cannot plot f1');
+    set(handles.plot_button,'Enable','off');
+    % Give the edit text box focus so user can correct the error
+    uicontrol(hObject);
+else 
+    % Enable the Plot button with its original name
+    set(handles.plot_button,'String','Plot');
+    set(handles.plot_button,'Enable','on');
+end
+
+% --- Executes during object creation, after setting all properties.
+function frequency_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to frequency (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
