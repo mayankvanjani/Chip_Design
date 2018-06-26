@@ -11,7 +11,7 @@ Target Device  : xc6slx16
 Target Package : ftg256
 Target Speed   : -2
 Mapper Version : spartan6 -- $Revision: 1.55 $
-Mapped Date    : Mon Apr 23 16:57:02 2018
+Mapped Date    : Tue Jun 26 13:37:07 2018
 
 Design Summary
 --------------
@@ -97,9 +97,9 @@ Specific Feature Utilization:
 
 Average Fanout of Non-Clock Nets:                2.92
 
-Peak Memory Usage:  490 MB
-Total REAL time to MAP completion:  11 secs 
-Total CPU time to MAP completion:   6 secs 
+Peak Memory Usage:  536 MB
+Total REAL time to MAP completion:  5 secs 
+Total CPU time to MAP completion:   4 secs 
 
 Table of Contents
 -----------------
@@ -125,14 +125,14 @@ Section 2 - Warnings
 
 Section 3 - Informational
 -------------------------
-INFO:LIT:243 - Logical network ok1<30> has no load.
+INFO:LIT:243 - Logical network ok1<29> has no load.
 INFO:LIT:395 - The above info message is repeated 10 more times for the
    following (max. 5 shown):
-   ok1<29>,
-   ok1<26>,
    ep00/ep_dataout<15>,
    ep00/ep_dataout<14>,
-   ep00/ep_dataout<13>
+   ep00/ep_dataout<13>,
+   ep00/ep_dataout<12>,
+   ep00/ep_dataout<11>
    To see the details of these info messages, please use the -detail switch.
 INFO:MapLib:562 - No environment variables are currently set.
 INFO:LIT:244 - All of the single ended outputs in this design are using slew
@@ -148,9 +148,9 @@ INFO:Pack:1650 - Map created a placed design.
 
 Section 4 - Removed Logic Summary
 ---------------------------------
-  52 block(s) removed
-  17 block(s) optimized away
-  59 signal(s) removed
+  57 block(s) removed
+  34 block(s) optimized away
+  64 signal(s) removed
 
 Section 5 - Removed Logic
 -------------------------
@@ -189,6 +189,17 @@ The signal "ep00/ep_datahold<14>" is sourceless and has been removed.
  Sourceless block "ep00/ep_dataout_14" (SFF) removed.
 The signal "ep00/ep_datahold<15>" is sourceless and has been removed.
  Sourceless block "ep00/ep_dataout_15" (SFF) removed.
+The signal "pipeOutA3/ep_read" is sourceless and has been removed.
+The signal "pipeOutA3/ep_blockstrobe" is sourceless and has been removed.
+The signal "pipeOutA3/ti_addr[7]_ep_addr[7]_equal_4_o" is sourceless and has
+been removed.
+ Sourceless block "pipeOutA3/ep_read1" (ROM) removed.
+ Sourceless block "pipeOutA3/ep_blockstrobe1" (ROM) removed.
+The signal "pipeOutA3/ti_addr[7]_ep_addr[7]_equal_4_o8" is sourceless and has
+been removed.
+ Sourceless block "pipeOutA3/ti_addr[7]_ep_addr[7]_equal_4_o83" (ROM) removed.
+The signal "pipeOutA3/ti_addr[7]_ep_addr[7]_equal_4_o81" is sourceless and has
+been removed.
 The signal "okHI/hicore/state[31]_GND_1_o_Select_94_o" is sourceless and has
 been removed.
  Sourceless block "okHI/hicore/ti_read" (SFF) removed.
@@ -300,6 +311,8 @@ Unused block "okHI/delays[14].iodelay_inst" (IODELAY2) removed.
 Unused block "okHI/delays[15].iodelay_inst" (IODELAY2) removed.
 Unused block "okHI/hicore/Mmux_GND_1_o_host_datain[2]_MUX_51_o11" (ROM) removed.
 Unused block "okHI/hicore/state_state[31]_GND_1_o_Select_94_o1" (ROM) removed.
+Unused block "pipeOutA3/ti_addr[7]_ep_addr[7]_equal_4_o81" (ROM) removed.
+Unused block "pipeOutA3/ti_addr[7]_ep_addr[7]_equal_4_o82" (ROM) removed.
 
 Optimized Block(s):
 TYPE 		BLOCK
@@ -332,6 +345,40 @@ LUT2 		okHI/hicore/Mmux_hi_dataout71
 GND 		okHI/hicore/XST_GND
 VCC 		okHI/hicore/XST_VCC
 INV 		okHI/hicore/hi_busy_rstpot1_INV_0
+LUT2 		pipeOutA3/Mmux_ok2101
+   optimized to 0
+LUT2 		pipeOutA3/Mmux_ok211
+   optimized to 0
+LUT2 		pipeOutA3/Mmux_ok2111
+   optimized to 0
+LUT2 		pipeOutA3/Mmux_ok2121
+   optimized to 0
+LUT2 		pipeOutA3/Mmux_ok2131
+   optimized to 0
+LUT2 		pipeOutA3/Mmux_ok2141
+   optimized to 0
+LUT2 		pipeOutA3/Mmux_ok2151
+   optimized to 0
+LUT2 		pipeOutA3/Mmux_ok2161
+   optimized to 0
+LUT2 		pipeOutA3/Mmux_ok2171
+   optimized to 0
+LUT2 		pipeOutA3/Mmux_ok221
+   optimized to 0
+LUT2 		pipeOutA3/Mmux_ok231
+   optimized to 0
+LUT2 		pipeOutA3/Mmux_ok241
+   optimized to 0
+LUT2 		pipeOutA3/Mmux_ok251
+   optimized to 0
+LUT2 		pipeOutA3/Mmux_ok261
+   optimized to 0
+LUT2 		pipeOutA3/Mmux_ok271
+   optimized to 0
+LUT2 		pipeOutA3/Mmux_ok281
+   optimized to 0
+LUT2 		pipeOutA3/Mmux_ok291
+   optimized to 0
 
 To enable printing of redundant blocks removed and signals merged, set the
 detailed map report option and rerun map.

@@ -50,8 +50,8 @@ function reset_Callback(hObject, eventdata, handles)
 % hObject    handle to reset (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-cla(handles.axes1);
-grid off;
+% cla(handles.axes1);
+disp('hello world')'
 
 
 % --- Executes on button press in enable.
@@ -59,7 +59,7 @@ function enable_Callback(hObject, eventdata, handles) %#ok<*DEFNU>
 % hObject    handle to enable (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-disp('hello world');
+disp('hello world2');
 
 
 % --- Executes on button press in test_signal.
@@ -86,6 +86,7 @@ grid on
 % Create time plot in proper axes
 plot(handles.axes1,t,x);
 set(handles.axes1,'XMinorTick','on');
+% disp('hello world');
 grid on
 
 
