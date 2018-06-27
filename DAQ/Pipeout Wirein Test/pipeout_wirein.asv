@@ -92,7 +92,7 @@ function enable_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% disp('hello world enable');
+%disp('hello world enable');
 
 t = eval(get(handles.time,'String'));
 y = 0.5+( sawtooth(pi*50*t, 0.5) / 2);
@@ -216,14 +216,6 @@ function pipeout_Callback(hObject, eventdata, handles)
 % hObject    handle to pipeout (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
-disp('hello world pipeout');
-
-str = inputdlg({'P','Q','div1(delta_sigma)'},'Input dialog');
-P = str2num(str{1});
-Q = str2num(str{2});
-div1 = str2num(str{3});
-
 handles.pll = calllib('okFrontPanel', 'okPLL22150_Construct');
 calllib('okFrontPanel', 'okPLL22150_SetCrystalLoad', handles.pll, 12.0);
 calllib('okFrontPanel', 'okPLL22150_SetReference', handles.pll, 48.0, 1);
@@ -232,24 +224,10 @@ calllib('okFrontPanel', 'okPLL22150_SetVCOParameters', handles.pll, P, Q);
 handles.VCO_freq = calllib('okFrontPanel', 'okPLL22150_GetVCOFrequency', handles.pll);
 calllib('okFrontPanel', 'okPLL22150_SetDiv1', handles.pll, 1, div1);
 calllib('okFrontPanel', 'okPLL22150_SetOutputSource', handles.pll, 4, 1);
+%calllib('okFrontPanel', 'okPLL22150_SetOutputSource', handles.pll, 0, 1);
 handles.freq_out1 = calllib('okFrontPanel', 'okPLL22150_GetOutputFrequency', handles.pll, 4);
 calllib('okFrontPanel', 'okPLL22150_SetOutputEnable', handles.pll, 4, 1);
 
-success_wirein=calllib('okFrontPanel', 'okFrontPanel_SetWireInValue',handles.xem,hex2dec('01'),1,hex2dec('01'));
 calllib('okFrontPanel', 'okFrontPanel_SetPLL22150Configuration', handles.xem, handles.pll);
+
 handles.success_configure = calllib('okFrontPanel', 'okFrontPanel_ConfigureFPGA', handles.xem,'chip4_adc_selfmain_v2.bit');
-
-buf(psize,1) = uint8(0);
-epvalue(bsize,1) = uint8(0);
-pv = libpointer('uint8Ptr', buf);
-
-guidata(hObject, handles);
-calllib('okFrontPanel', 'okFrontPanel_UpdateWireIns', handles.xem);
-pause(0.01);
-
-calllib('okFrontPanel', 'okFrontPanel_ReadFromBlockPipeOut', handles.xem, hex2dec('A0'), 1024,f0, pv_A0);
-epvalue_A0 = get(pv_A0, 'value');
-pause(0.1);
-
-
-
