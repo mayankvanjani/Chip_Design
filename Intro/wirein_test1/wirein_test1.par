@@ -1,7 +1,7 @@
 Release 14.7 par P.20131013 (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-DESKTOP-3APR6ST::  Tue Jul 03 12:30:38 2018
+DESKTOP-3APR6ST::  Fri Jul 06 11:22:08 2018
 
 par -w -intstyle ise -ol high -mt off wirein_test1_map.ncd wirein_test1.ncd
 wirein_test1.pcf 
@@ -102,13 +102,13 @@ Specific Feature Utilization:
 Overall effort level (-ol):   High 
 Router effort level (-rl):    High 
 
-Starting initial Timing Analysis.  REAL time: 3 secs 
-Finished initial Timing Analysis.  REAL time: 3 secs 
+Starting initial Timing Analysis.  REAL time: 2 secs 
+Finished initial Timing Analysis.  REAL time: 2 secs 
 
 Starting Router
 
 
-Phase  1  : 1588 unrouted;      REAL time: 3 secs 
+Phase  1  : 1588 unrouted;      REAL time: 2 secs 
 
 Phase  2  : 1296 unrouted;      REAL time: 3 secs 
 
@@ -243,7 +243,7 @@ Generating Pad Report.
 
 All signals are completely routed.
 
-Total REAL time to PAR completion: 5 secs 
+Total REAL time to PAR completion: 4 secs 
 Total CPU time to PAR completion: 4 secs 
 
 Peak Memory Usage:  496 MB

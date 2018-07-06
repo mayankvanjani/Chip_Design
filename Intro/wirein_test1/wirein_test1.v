@@ -12,9 +12,9 @@ wire [7:0]  hi_in;
 wire [1:0]  hi_out;
 wire [15:0] hi_inout;
 wire        hi_muxsel;
-//wire [7:0]  led;
 
 assign      hi_muxsel=1'b0;
+
 // Opal Kelly Module Interface Connections
 wire        ti_clk;
 wire [30:0] ok1;
@@ -22,18 +22,19 @@ wire [16:0] ok2;
 
 // Endpoint connections:
 wire [15:0]  ep00wire;
-wire reset;
 wire [15:0]  ep01wire;
-wire enable;
 wire [15:0]  ep02wire;
-wire reset_transfer;
-wire [15:0]  tmp_1;
-wire [15:0] tmp_2;
 
 wire [15:0]  epA0pipe;
 wire         epA0read;
 wire         epA0_blockSTROBE;
 wire         epA0_ready;
+
+wire reset;
+wire enable;
+wire reset_transfer;
+wire [15:0]  tmp_1;
+wire [15:0] tmp_2;
 
 wire [6:0] data_out;
 wire       clk_bar;
@@ -41,6 +42,7 @@ wire       clk_bar;
 assign reset = ep00wire[0];
 assign enable = ep01wire[0];
 assign reset_transfer = ep02wire[0];
+
 assign tmp_1 = {9'd0,7'd23};
 assign tmp_2 = {9'd0, data_out};
 // assign tmp_2 = {9'd0,7'b0101010};
@@ -77,7 +79,6 @@ okWireIn     ep02 (.ok1(ok1),                          .ep_addr(8'h02), .ep_data
 
 
 // okBTPipeOut pipeOutA3 (.ok1(ok1), .ok2(ok2) .ep_addr(8’ha3), .ep_datain(epA3pipe), .ep_read(epA3read), .ep_blockstrobe(epA3strobe), .ep_ready(epA3ready)); 
-// okBTPipeOut pipeOutA3 (.ok1(ok1), .ok2(ok2), .ep_addr(8'h00), .ep_datain(ep00pipe), .ep_read(ep00read), .ep_blockstrobe(ep00strobe), .ep_ready(ep00ready)); 
 okBTPipeOut  pipeOutA0 (.ok1(ok1), .ok2(ok2x[ 0*17 +: 17 ]), .ep_addr(8'ha0), .ep_datain(epA0pipe), .ep_read(epA0read),  .ep_blockstrobe(epA0_blockSTROBE), .ep_ready(epA0_ready));
 
 endmodule

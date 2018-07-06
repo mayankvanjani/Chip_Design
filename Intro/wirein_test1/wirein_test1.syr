@@ -4,13 +4,13 @@ Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.11 secs
+Total CPU time to Xst completion: 0.09 secs
  
 --> Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.11 secs
+Total CPU time to Xst completion: 0.09 secs
  
 --> Reading design: wirein_test1.prj
 
@@ -139,8 +139,8 @@ WARNING:HDLCompiler:751 - "C:\Users\Nanolab3\Desktop\Mayank\verilog\wirein_test1
 =========================================================================
 
 Elaborating module <wirein_test1>.
-WARNING:HDLCompiler:1127 - "C:\Users\Nanolab3\Desktop\Mayank\verilog\wirein_test1\wirein_test1.v" Line 44: Assignment to tmp_1 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "C:\Users\Nanolab3\Desktop\Mayank\verilog\wirein_test1\wirein_test1.v" Line 47: Assignment to clk_bar ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "C:\Users\Nanolab3\Desktop\Mayank\verilog\wirein_test1\wirein_test1.v" Line 46: Assignment to tmp_1 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "C:\Users\Nanolab3\Desktop\Mayank\verilog\wirein_test1\wirein_test1.v" Line 49: Assignment to clk_bar ignored, since the identifier is never used
 
 Elaborating module <ramp>.
 WARNING:HDLCompiler:413 - "C:\Users\Nanolab3\Desktop\Mayank\verilog\wirein_test1\ramp.v" Line 30: Result of 8-bit expression is truncated to fit in 7-bit target.
@@ -175,14 +175,14 @@ Elaborating module <FDRE>.
 Elaborating module <OBUF>.
 
 Elaborating module <okCore>.
-WARNING:HDLCompiler:1127 - "C:\Users\Nanolab3\Desktop\Mayank\verilog\wirein_test1\wirein_test1.v" Line 68: Assignment to ti_clk ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "C:\Users\Nanolab3\Desktop\Mayank\verilog\wirein_test1\wirein_test1.v" Line 70: Assignment to ti_clk ignored, since the identifier is never used
 
 Elaborating module <okWireOR(N=1)>.
 
 Elaborating module <okWireIn>.
 
 Elaborating module <okBTPipeOut>.
-WARNING:HDLCompiler:1127 - "C:\Users\Nanolab3\Desktop\Mayank\verilog\wirein_test1\wirein_test1.v" Line 81: Assignment to epA0_blockSTROBE ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "C:\Users\Nanolab3\Desktop\Mayank\verilog\wirein_test1\wirein_test1.v" Line 82: Assignment to epA0_blockSTROBE ignored, since the identifier is never used
 
 =========================================================================
 *                           HDL Synthesis                               *
@@ -190,8 +190,8 @@ WARNING:HDLCompiler:1127 - "C:\Users\Nanolab3\Desktop\Mayank\verilog\wirein_test
 
 Synthesizing Unit <wirein_test1>.
     Related source file is "C:\Users\Nanolab3\Desktop\Mayank\verilog\wirein_test1\wirein_test1.v".
-INFO:Xst:3210 - "C:\Users\Nanolab3\Desktop\Mayank\verilog\wirein_test1\wirein_test1.v" line 67: Output port <ti_clk> of the instance <okHI> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "C:\Users\Nanolab3\Desktop\Mayank\verilog\wirein_test1\wirein_test1.v" line 81: Output port <ep_blockstrobe> of the instance <pipeOutA0> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\Nanolab3\Desktop\Mayank\verilog\wirein_test1\wirein_test1.v" line 69: Output port <ti_clk> of the instance <okHI> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "C:\Users\Nanolab3\Desktop\Mayank\verilog\wirein_test1\wirein_test1.v" line 82: Output port <ep_blockstrobe> of the instance <pipeOutA0> is unconnected or connected to loadless signal.
     Summary:
 	no macro.
 Unit <wirein_test1> synthesized.
@@ -681,7 +681,7 @@ hi_in<0>       |    6.949|         |         |         |
 
 
 Total REAL time to Xst completion: 6.00 secs
-Total CPU time to Xst completion: 6.14 secs
+Total CPU time to Xst completion: 5.90 secs
  
 --> 
 
