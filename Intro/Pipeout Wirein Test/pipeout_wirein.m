@@ -22,7 +22,7 @@ function varargout = pipeout_wirein(varargin)
 
 % Edit the above text to modify the response to help pipeout_wirein
 
-% Last Modified by GUIDE v2.5 27-Jun-2018 13:58:26
+% Last Modified by GUIDE v2.5 02-Jul-2018 11:31:20
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -42,7 +42,6 @@ else
     gui_mainfcn(gui_State, varargin{:});
 end
 % End initialization code - DO NOT EDIT
-
 
 % --- Executes just before pipeout_wirein is made visible.
 function pipeout_wirein_OpeningFcn(hObject, eventdata, handles, varargin)
@@ -76,34 +75,48 @@ varargout{1} = handles.output;
 % ------------------------- %
 
 
-% --- Executes on button press in reset.
-function reset_Callback(hObject, eventdata, handles)
-% hObject    handle to reset (see GCBO)
+% --- Executes on button press in start.
+function start_Callback(hObject, eventdata, handles)
+% hObject    handle to start (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-%disp('hello world reset');
+disp('hello world start');
 
 cla(handles.axes1);
+P = 128;
+Q = 48;
+div1 = 125;
 
-% --- Executes on button press in enable.
-function enable_Callback(hObject, eventdata, handles)
-% hObject    handle to enable (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+loadlibrary('okFrontPanel', 'okFrontPanelDLL.h');
+handles.xem = calllib('okFrontPanel', 'okFrontPanel_Construct');
+handles.numDevices = calllib('okFrontPanel', 'okFrontPanel_GetDeviceCount', handles.xem);
+handles.ret = calllib('okFrontPanel', 'okFrontPanel_OpenBySerial', handles.xem, '');
+handles.success_checkOPEN = calllib('okFrontPanel', 'okFrontPanel_IsOpen', handles.xem);
 
-% disp('hello world enable');
+handles.pll = calllib('okFrontPanel', 'okPLL22150_Construct');
+calllib('okFrontPanel', 'okPLL22150_SetCrystalLoad', handles.pll, 12.0);
+calllib('okFrontPanel', 'okPLL22150_SetReference', handles.pll, 48.0, 1);
 
-<<<<<<< HEAD:Intro/Pipeout Wirein Test/pipeout_wirein.m
-t = 0:.001:
-disp('testing');
-=======
-t = eval(get(handles.time,'String'));
-y = 0.5+( sawtooth(pi*50*t, 0.5) / 2);
-plot(handles.axes1,t,y);
-set(handles.axes1,'XMinorTick','on');
-grid on;
->>>>>>> 7081e4ac1d2630859bf57d6f3170068c7b735242:DAQ/Pipeout Wirein Test/pipeout_wirein.m
+calllib('okFrontPanel', 'okPLL22150_SetVCOParameters', handles.pll, P, Q);
+handles.VCO_freq = calllib('okFrontPanel', 'okPLL22150_GetVCOFrequency', handles.pll);
+calllib('okFrontPanel', 'okPLL22150_SetDiv1', handles.pll, 1, div1);
+calllib('okFrontPanel', 'okPLL22150_SetOutputSource', handles.pll, 0, 1);
+handles.freq_out1 = calllib('okFrontPanel', 'okPLL22150_GetOutputFrequency', handles.pll, 0);
+calllib('okFrontPanel', 'okPLL22150_SetOutputEnable', handles.pll, 0, 1);
+
+calllib('okFrontPanel', 'okPLL22150_SetOutputSource', handles.pll, 1, 0);
+handles.freq_out2 = calllib('okFrontPanel', 'okPLL22150_GetOutputFrequency', handles.pll, 1);
+calllib('okFrontPanel', 'okPLL22150_SetOutputEnable', handles.pll, 1, 1);
+
+calllib('okFrontPanel', 'okFrontPanel_SetPLL22150Configuration', handles.xem, handles.pll);
+handles.success_configure = calllib('okFrontPanel', 'okFrontPanel_ConfigureFPGA', handles.xem,'wirein_test1.bit');
+
+guidata(hObject, handles);
+
+assignin('base','VCO',handles.VCO_freq);
+assignin('base','ramp_clk',handles.freq_out1);
+assignin('base','USB_clk',handles.freq_out2);
 
 % --- Executes on button press in test_signal.
 function test_signal_Callback(hObject, eventdata, handles)
@@ -135,8 +148,17 @@ set(handles.axes1,'XMinorTick','on');
 % disp('hello world');
 grid on
 
+% --- Executes during object creation, after setting all properties.
+function time_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to time (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
 
-
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
 function time_Callback(hObject, eventdata, handles)
 % hObject    handle to time (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -173,8 +195,8 @@ try
 end
 
 % --- Executes during object creation, after setting all properties.
-function time_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to time (see GCBO)
+function frequency_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to frequency (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -183,9 +205,6 @@ function time_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
-
-
-
 function frequency_Callback(hObject, eventdata, handles)
 % hObject    handle to frequency (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -203,19 +222,6 @@ else
     set(handles.test_signal,'Enable','on');
 end
 
-% --- Executes during object creation, after setting all properties.
-function frequency_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to frequency (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
 % --- Executes on button press in pipeout.
 function pipeout_Callback(hObject, eventdata, handles)
 % hObject    handle to pipeout (see GCBO)
@@ -224,37 +230,106 @@ function pipeout_Callback(hObject, eventdata, handles)
 
 disp('hello world pipeout');
 
+blocksize=512;
+f0=2*blocksize;
+%{
 str = inputdlg({'P','Q','div1(delta_sigma)'},'Input dialog');
-P = str2num(str{1});
-Q = str2num(str{2});
-div1 = str2num(str{3});
+P = str2num(str{1}); %128
+Q = str2num(str{2}); %48
+div1 = str2num(str{3}); %125
+%}
 
-handles.pll = calllib('okFrontPanel', 'okPLL22150_Construct');
-calllib('okFrontPanel', 'okPLL22150_SetCrystalLoad', handles.pll, 12.0);
-calllib('okFrontPanel', 'okPLL22150_SetReference', handles.pll, 48.0, 1);
 
-calllib('okFrontPanel', 'okPLL22150_SetVCOParameters', handles.pll, P, Q);
-handles.VCO_freq = calllib('okFrontPanel', 'okPLL22150_GetVCOFrequency', handles.pll);
-calllib('okFrontPanel', 'okPLL22150_SetDiv1', handles.pll, 1, div1);
-calllib('okFrontPanel', 'okPLL22150_SetOutputSource', handles.pll, 4, 1);
-handles.freq_out1 = calllib('okFrontPanel', 'okPLL22150_GetOutputFrequency', handles.pll, 4);
-calllib('okFrontPanel', 'okPLL22150_SetOutputEnable', handles.pll, 4, 1);
+%loadlibrary('okFrontPanel', 'okFrontPanelDLL.h');
+%handles.xem = calllib('okFrontPanel', 'okFrontPanel_Construct');
 
-success_wirein=calllib('okFrontPanel', 'okFrontPanel_SetWireInValue',handles.xem,hex2dec('01'),1,hex2dec('01'));
-calllib('okFrontPanel', 'okFrontPanel_SetPLL22150Configuration', handles.xem, handles.pll);
-handles.success_configure = calllib('okFrontPanel', 'okFrontPanel_ConfigureFPGA', handles.xem,'chip4_adc_selfmain_v2.bit');
 
-buf(psize,1) = uint8(0);
-epvalue(bsize,1) = uint8(0);
-pv = libpointer('uint8Ptr', buf);
 
+buf_A0(f0,1) = uint8(0);
+epvalue_A0(f0,1) = uint8(0);
+pv_A0 = libpointer('uint8Ptr', buf_A0);
+
+%{
+success_wirein=calllib('okFrontPanel', 'okFrontPanel_SetWireInValue',handles.xem,hex2dec('00'),1,hex2dec('01'));
 guidata(hObject, handles);
 calllib('okFrontPanel', 'okFrontPanel_UpdateWireIns', handles.xem);
 pause(0.01);
 
+success_wirein=calllib('okFrontPanel', 'okFrontPanel_SetWireInValue',handles.xem,hex2dec('01'),1,hex2dec('01'));
+guidata(hObject, handles);
+calllib('okFrontPanel', 'okFrontPanel_UpdateWireIns', handles.xem);
+pause(0.01);
+
+success_wirein=calllib('okFrontPanel', 'okFrontPanel_SetWireInValue',handles.xem,hex2dec('02'),1,hex2dec('01'));
+guidata(hObject, handles);
+calllib('okFrontPanel', 'okFrontPanel_UpdateWireIns', handles.xem);
+pause(0.01);
+%}
+%{
+success_wirein=calllib('okFrontPanel', 'okFrontPanel_SetWireInValue', handles.xem, hex2dec('02'),1,hex2dec('01'));
+calllib('okFrontPanel', 'okFrontPanel_UpdateWireIns', handles.xem);
+pause(0.1)
+success_wirein=calllib('okFrontPanel', 'okFrontPanel_SetWireInValue', handles.xem, hex2dec('02'),0,hex2dec('01'));
+calllib('okFrontPanel', 'okFrontPanel_UpdateWireIns', handles.xem);
+pause(0.1)
+%}
 calllib('okFrontPanel', 'okFrontPanel_ReadFromBlockPipeOut', handles.xem, hex2dec('A0'), 1024,f0, pv_A0);
 epvalue_A0 = get(pv_A0, 'value');
 pause(0.1);
+t = 0:.001:1.023;
+% disp(size(t));
+% disp(size(epvalue_A0));
+disp(t);
+disp(double(epvalue_A0));
+plot(handles.axes1, t, double(epvalue_A0));
+set(handles.axes1,'XMinorTick','on');
+grid on
+
+% --- Executes on button press in reset_ramp.
+function reset_ramp_Callback(hObject, eventdata, handles)
+% hObject    handle to reset_ramp (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+success_wirein=calllib('okFrontPanel', 'okFrontPanel_SetWireInValue', handles.xem, hex2dec('00'),1,hex2dec('01'));
+calllib('okFrontPanel', 'okFrontPanel_UpdateWireIns', handles.xem);
+pause(0.1)
+success_wirein=calllib('okFrontPanel', 'okFrontPanel_SetWireInValue', handles.xem, hex2dec('00'),0,hex2dec('01'));
+calllib('okFrontPanel', 'okFrontPanel_UpdateWireIns', handles.xem);
 
 
+% --- Executes on button press in enable_ramp.
+function enable_ramp_Callback(hObject, eventdata, handles)
+% hObject    handle to enable_ramp (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+if(get(hObject,'Value') == 1)
+  success_wirein=calllib('okFrontPanel', 'okFrontPanel_SetWireInValue', handles.xem, hex2dec('01'),1,hex2dec('01'));
+  calllib('okFrontPanel', 'okFrontPanel_UpdateWireIns', handles.xem);
+else
+  success_wirein=calllib('okFrontPanel', 'okFrontPanel_SetWireInValue', handles.xem, hex2dec('01'),0,hex2dec('01'));
+  calllib('okFrontPanel', 'okFrontPanel_UpdateWireIns', handles.xem);
+end
 
+% --- Executes on button press in reset_fifo.
+function reset_fifo_Callback(hObject, eventdata, handles)
+% hObject    handle to reset_fifo (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+success_wirein=calllib('okFrontPanel', 'okFrontPanel_SetWireInValue', handles.xem, hex2dec('02'),1,hex2dec('01'));
+calllib('okFrontPanel', 'okFrontPanel_UpdateWireIns', handles.xem);
+pause(0.1)
+success_wirein=calllib('okFrontPanel', 'okFrontPanel_SetWireInValue', handles.xem, hex2dec('02'),0,hex2dec('01'));
+calllib('okFrontPanel', 'okFrontPanel_UpdateWireIns', handles.xem);
+
+% --- Executes on button press in unload.
+function unload_Callback(hObject, eventdata, handles)
+% hObject    handle to unload (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+disp('hello world unload');
+
+calllib('okFrontPanel', 'okFrontPanel_Destruct', handles.xem);
+guidata(hObject, handles);
+clear all;
+unloadlibrary okFrontPanel
