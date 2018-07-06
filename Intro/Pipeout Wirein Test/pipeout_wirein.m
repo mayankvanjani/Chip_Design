@@ -81,13 +81,22 @@ function start_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-disp('hello world start');
+% disp('hello world start');
 
 cla(handles.axes1);
+
+%{
+str = inputdlg({'P','Q','div1(delta_sigma)'},'Input dialog');
+P = str2num(str{1}); %128
+Q = str2num(str{2}); %48
+div1 = str2num(str{3}); %125
+%}
+
 P = 128;
 Q = 48;
 div1 = 125;
 
+% Clock
 loadlibrary('okFrontPanel', 'okFrontPanelDLL.h');
 handles.xem = calllib('okFrontPanel', 'okFrontPanel_Construct');
 handles.numDevices = calllib('okFrontPanel', 'okFrontPanel_GetDeviceCount', handles.xem);
@@ -109,11 +118,13 @@ calllib('okFrontPanel', 'okPLL22150_SetOutputSource', handles.pll, 1, 0);
 handles.freq_out2 = calllib('okFrontPanel', 'okPLL22150_GetOutputFrequency', handles.pll, 1);
 calllib('okFrontPanel', 'okPLL22150_SetOutputEnable', handles.pll, 1, 1);
 
+% Upload Bit File
 calllib('okFrontPanel', 'okFrontPanel_SetPLL22150Configuration', handles.xem, handles.pll);
 handles.success_configure = calllib('okFrontPanel', 'okFrontPanel_ConfigureFPGA', handles.xem,'wirein_test1.bit');
 
 guidata(hObject, handles);
 
+% View Variables
 assignin('base','VCO',handles.VCO_freq);
 assignin('base','ramp_clk',handles.freq_out1);
 assignin('base','USB_clk',handles.freq_out2);
@@ -131,21 +142,10 @@ t = eval(get(handles.time,'String'));
 
 % Calculate data
 x = sin(2*pi*freq*t);
-% y = fft(x,512);
-% m = y.*conj(y)/512;
-% f = 1000*(0:256)/512;
 
-%{
-% Create frequency plot in proper axes
-plot(handles.frequency_axes,f,m(1:257));
-set(handles.frequency_axes,'XMinorTick','on');
-grid on
-%}
-
-% Create time plot in proper axes
+% Create time plot
 plot(handles.axes1,t,x);
 set(handles.axes1,'XMinorTick','on');
-% disp('hello world');
 grid on
 
 % --- Executes during object creation, after setting all properties.
@@ -188,7 +188,7 @@ try
         return
     end
 
- catch ME %#ok<*NASGU>
+ catch ME
     % Cannot evaluate expression user typed
     set(handles.test_signal,'String','Cannot plot t');
     uicontrol(hObject);
@@ -228,59 +228,27 @@ function pipeout_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-disp('hello world pipeout');
+% disp('hello world pipeout');
 
-blocksize=512;
-f0=2*blocksize;
-%{
-str = inputdlg({'P','Q','div1(delta_sigma)'},'Input dialog');
-P = str2num(str{1}); %128
-Q = str2num(str{2}); %48
-div1 = str2num(str{3}); %125
-%}
+blocksize = 512;
+f0 = 2*blocksize;
 
-
-%loadlibrary('okFrontPanel', 'okFrontPanelDLL.h');
-%handles.xem = calllib('okFrontPanel', 'okFrontPanel_Construct');
-
-
-
+% Datasheet Buffer
 buf_A0(f0,1) = uint8(0);
 epvalue_A0(f0,1) = uint8(0);
 pv_A0 = libpointer('uint8Ptr', buf_A0);
 
-%{
-success_wirein=calllib('okFrontPanel', 'okFrontPanel_SetWireInValue',handles.xem,hex2dec('00'),1,hex2dec('01'));
-guidata(hObject, handles);
-calllib('okFrontPanel', 'okFrontPanel_UpdateWireIns', handles.xem);
-pause(0.01);
-
-success_wirein=calllib('okFrontPanel', 'okFrontPanel_SetWireInValue',handles.xem,hex2dec('01'),1,hex2dec('01'));
-guidata(hObject, handles);
-calllib('okFrontPanel', 'okFrontPanel_UpdateWireIns', handles.xem);
-pause(0.01);
-
-success_wirein=calllib('okFrontPanel', 'okFrontPanel_SetWireInValue',handles.xem,hex2dec('02'),1,hex2dec('01'));
-guidata(hObject, handles);
-calllib('okFrontPanel', 'okFrontPanel_UpdateWireIns', handles.xem);
-pause(0.01);
-%}
-%{
-success_wirein=calllib('okFrontPanel', 'okFrontPanel_SetWireInValue', handles.xem, hex2dec('02'),1,hex2dec('01'));
-calllib('okFrontPanel', 'okFrontPanel_UpdateWireIns', handles.xem);
-pause(0.1)
-success_wirein=calllib('okFrontPanel', 'okFrontPanel_SetWireInValue', handles.xem, hex2dec('02'),0,hex2dec('01'));
-calllib('okFrontPanel', 'okFrontPanel_UpdateWireIns', handles.xem);
-pause(0.1)
-%}
 calllib('okFrontPanel', 'okFrontPanel_ReadFromBlockPipeOut', handles.xem, hex2dec('A0'), 1024,f0, pv_A0);
 epvalue_A0 = get(pv_A0, 'value');
 pause(0.1);
 t = 0:.001:1.023;
-% disp(size(t));
-% disp(size(epvalue_A0));
+
+% Read in Values for Plot
+%  disp(size(t));
+%  disp(size(epvalue_A0));
 disp(t);
 disp(double(epvalue_A0));
+
 plot(handles.axes1, t, double(epvalue_A0));
 set(handles.axes1,'XMinorTick','on');
 grid on
@@ -295,7 +263,6 @@ calllib('okFrontPanel', 'okFrontPanel_UpdateWireIns', handles.xem);
 pause(0.1)
 success_wirein=calllib('okFrontPanel', 'okFrontPanel_SetWireInValue', handles.xem, hex2dec('00'),0,hex2dec('01'));
 calllib('okFrontPanel', 'okFrontPanel_UpdateWireIns', handles.xem);
-
 
 % --- Executes on button press in enable_ramp.
 function enable_ramp_Callback(hObject, eventdata, handles)
