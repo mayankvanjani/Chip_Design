@@ -61,7 +61,9 @@ NET "hi_in<7>" OFFSET = IN 13.33 ns VALID 20.83 ns BEFORE "hi_in<0>" RISING;
 ## System Clocks
 ############################################################################
 #NET "clk1"      LOC="T8"  | IOSTANDARD="LVCMOS33";
+NET "clock"      LOC="T8"  | IOSTANDARD="LVCMOS33";
 #NET "clk2"      LOC="K12" | IOSTANDARD="LVCMOS33";
+NET "clock2"      LOC="K12" | IOSTANDARD="LVCMOS33";
 #NET "clk3"      LOC="H4"  | IOSTANDARD="LVCMOS33";
 
 ############################################################################
@@ -175,14 +177,14 @@ NET "hi_in<7>" OFFSET = IN 13.33 ns VALID 20.83 ns BEFORE "hi_in<0>" RISING;
 ############################################################################
 
 # LEDs ################################################################
-NET "led<0>"     LOC="A4" | IOSTANDARD="LVCMOS33";
-NET "led<1>"     LOC="C5" | IOSTANDARD="LVCMOS33";
-NET "led<2>"     LOC="B5" | IOSTANDARD="LVCMOS33";
-NET "led<3>"     LOC="A5" | IOSTANDARD="LVCMOS33";
-NET "led<4>"     LOC="C6" | IOSTANDARD="LVCMOS33";
-NET "led<5>"     LOC="B6" | IOSTANDARD="LVCMOS33";
-NET "led<6>"     LOC="A6" | IOSTANDARD="LVCMOS33";
-NET "led<7>"     LOC="A7" | IOSTANDARD="LVCMOS33";
+#NET "led<0>"     LOC="A4" | IOSTANDARD="LVCMOS33";
+#NET "led<1>"     LOC="C5" | IOSTANDARD="LVCMOS33";
+#NET "led<2>"     LOC="B5" | IOSTANDARD="LVCMOS33";
+#NET "led<3>"     LOC="A5" | IOSTANDARD="LVCMOS33";
+#NET "led<4>"     LOC="C6" | IOSTANDARD="LVCMOS33";
+#NET "led<5>"     LOC="B6" | IOSTANDARD="LVCMOS33";
+#NET "led<6>"     LOC="A6" | IOSTANDARD="LVCMOS33";
+#NET "led<7>"     LOC="A7" | IOSTANDARD="LVCMOS33";
 
 # Buttons #############################################################
 #NET "button<0>"  LOC="D5" | IOSTANDARD="LVCMOS33";

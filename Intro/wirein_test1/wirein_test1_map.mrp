@@ -11,40 +11,40 @@ Target Device  : xc6slx16
 Target Package : ftg256
 Target Speed   : -2
 Mapper Version : spartan6 -- $Revision: 1.55 $
-Mapped Date    : Tue Jun 26 13:37:07 2018
+Mapped Date    : Tue Jul 03 12:30:30 2018
 
 Design Summary
 --------------
 Number of errors:      0
 Number of warnings:    0
 Slice Logic Utilization:
-  Number of Slice Registers:                    79 out of  18,224    1%
-    Number used as Flip Flops:                  79
+  Number of Slice Registers:                   247 out of  18,224    1%
+    Number used as Flip Flops:                 247
     Number used as Latches:                      0
     Number used as Latch-thrus:                  0
     Number used as AND/OR logics:                0
-  Number of Slice LUTs:                         94 out of   9,112    1%
-    Number used as logic:                       89 out of   9,112    1%
-      Number using O6 output only:              68
+  Number of Slice LUTs:                        229 out of   9,112    2%
+    Number used as logic:                      223 out of   9,112    2%
+      Number using O6 output only:             145
       Number using O5 output only:               1
-      Number using O5 and O6:                   20
+      Number using O5 and O6:                   77
       Number used as ROM:                        0
     Number used as Memory:                       0 out of   2,176    0%
-    Number used exclusively as route-thrus:      5
-      Number with same-slice register load:      5
+    Number used exclusively as route-thrus:      6
+      Number with same-slice register load:      6
       Number with same-slice carry load:         0
       Number with other load:                    0
 
 Slice Logic Distribution:
-  Number of occupied Slices:                    47 out of   2,278    2%
-  Number of MUXCYs used:                        12 out of   4,556    1%
-  Number of LUT Flip Flop pairs used:          120
-    Number with an unused Flip Flop:            47 out of     120   39%
-    Number with an unused LUT:                  26 out of     120   21%
-    Number of fully used LUT-FF pairs:          47 out of     120   39%
-    Number of unique control sets:              11
+  Number of occupied Slices:                   113 out of   2,278    4%
+  Number of MUXCYs used:                        44 out of   4,556    1%
+  Number of LUT Flip Flop pairs used:          316
+    Number with an unused Flip Flop:            97 out of     316   30%
+    Number with an unused LUT:                  87 out of     316   27%
+    Number of fully used LUT-FF pairs:         132 out of     316   41%
+    Number of unique control sets:              34
     Number of slice register sites lost
-      to control set restrictions:              41 out of  18,224    1%
+      to control set restrictions:             153 out of  18,224    1%
 
   A LUT Flip Flop pair for this architecture represents one LUT paired with
   one Flip Flop within a slice.  A control set is a unique combination of
@@ -53,12 +53,12 @@ Slice Logic Distribution:
   over-mapped for a non-slice resource or if Placement fails.
 
 IO Utilization:
-  Number of bonded IOBs:                        35 out of     186   18%
-    Number of LOCed IOBs:                       35 out of      35  100%
-    IOB Flip Flops:                             37
+  Number of bonded IOBs:                        29 out of     186   15%
+    Number of LOCed IOBs:                       29 out of      29  100%
+    IOB Flip Flops:                             43
 
 Specific Feature Utilization:
-  Number of RAMB16BWERs:                         0 out of      32    0%
+  Number of RAMB16BWERs:                         1 out of      32    3%
   Number of RAMB8BWERs:                          0 out of      64    0%
   Number of BUFIO2/BUFIO2_2CLKs:                 1 out of      32    3%
     Number used as BUFIO2s:                      1
@@ -66,8 +66,8 @@ Specific Feature Utilization:
   Number of BUFIO2FB/BUFIO2FB_2CLKs:             1 out of      32    3%
     Number used as BUFIO2FBs:                    1
     Number used as BUFIO2FB_2CLKs:               0
-  Number of BUFG/BUFGMUXs:                       1 out of      16    6%
-    Number used as BUFGs:                        1
+  Number of BUFG/BUFGMUXs:                       3 out of      16   18%
+    Number used as BUFGs:                        3
     Number used as BUFGMUX:                      0
   Number of DCM/DCM_CLKGENs:                     1 out of       4   25%
     Number used as DCMs:                         1
@@ -95,11 +95,11 @@ Specific Feature Utilization:
   Number of STARTUPs:                            0 out of       1    0%
   Number of SUSPEND_SYNCs:                       0 out of       1    0%
 
-Average Fanout of Non-Clock Nets:                2.92
+Average Fanout of Non-Clock Nets:                3.21
 
-Peak Memory Usage:  536 MB
+Peak Memory Usage:  552 MB
 Total REAL time to MAP completion:  5 secs 
-Total CPU time to MAP completion:   4 secs 
+Total CPU time to MAP completion:   5 secs 
 
 Table of Contents
 -----------------
@@ -126,13 +126,13 @@ Section 2 - Warnings
 Section 3 - Informational
 -------------------------
 INFO:LIT:243 - Logical network ok1<29> has no load.
-INFO:LIT:395 - The above info message is repeated 10 more times for the
+INFO:LIT:395 - The above info message is repeated 46 more times for the
    following (max. 5 shown):
-   ep00/ep_dataout<15>,
-   ep00/ep_dataout<14>,
-   ep00/ep_dataout<13>,
-   ep00/ep_dataout<12>,
-   ep00/ep_dataout<11>
+   ep02/ep_dataout<15>,
+   ep02/ep_dataout<14>,
+   ep02/ep_dataout<13>,
+   ep02/ep_dataout<12>,
+   ep02/ep_dataout<11>
    To see the details of these info messages, please use the -detail switch.
 INFO:MapLib:562 - No environment variables are currently set.
 INFO:LIT:244 - All of the single ended outputs in this design are using slew
@@ -148,9 +148,9 @@ INFO:Pack:1650 - Map created a placed design.
 
 Section 4 - Removed Logic Summary
 ---------------------------------
-  57 block(s) removed
-  34 block(s) optimized away
-  64 signal(s) removed
+ 139 block(s) removed
+   7 block(s) optimized away
+ 139 signal(s) removed
 
 Section 5 - Removed Logic
 -------------------------
@@ -165,6 +165,96 @@ To quickly locate the original cause for the removal of a chain of logic, look
 above the place where that logic is listed in the trimming report, then locate
 the lines that are least indented (begin at the leftmost edge).
 
+The signal "ep02/ep_dataout<15>" is sourceless and has been removed.
+The signal "ep02/ep_dataout<14>" is sourceless and has been removed.
+The signal "ep02/ep_dataout<13>" is sourceless and has been removed.
+The signal "ep02/ep_dataout<12>" is sourceless and has been removed.
+The signal "ep02/ep_dataout<11>" is sourceless and has been removed.
+The signal "ep02/ep_dataout<10>" is sourceless and has been removed.
+The signal "ep02/ep_dataout<9>" is sourceless and has been removed.
+The signal "ep02/ep_dataout<8>" is sourceless and has been removed.
+The signal "ep02/ep_dataout<7>" is sourceless and has been removed.
+The signal "ep02/ep_dataout<6>" is sourceless and has been removed.
+The signal "ep02/ep_dataout<5>" is sourceless and has been removed.
+The signal "ep02/ep_dataout<4>" is sourceless and has been removed.
+The signal "ep02/ep_dataout<3>" is sourceless and has been removed.
+The signal "ep02/ep_dataout<2>" is sourceless and has been removed.
+The signal "ep02/ep_dataout<1>" is sourceless and has been removed.
+The signal "ep02/ep_datahold<1>" is sourceless and has been removed.
+ Sourceless block "ep02/ep_dataout_1" (SFF) removed.
+The signal "ep02/ep_datahold<2>" is sourceless and has been removed.
+ Sourceless block "ep02/ep_dataout_2" (SFF) removed.
+The signal "ep02/ep_datahold<3>" is sourceless and has been removed.
+ Sourceless block "ep02/ep_dataout_3" (SFF) removed.
+The signal "ep02/ep_datahold<4>" is sourceless and has been removed.
+ Sourceless block "ep02/ep_dataout_4" (SFF) removed.
+The signal "ep02/ep_datahold<5>" is sourceless and has been removed.
+ Sourceless block "ep02/ep_dataout_5" (SFF) removed.
+The signal "ep02/ep_datahold<6>" is sourceless and has been removed.
+ Sourceless block "ep02/ep_dataout_6" (SFF) removed.
+The signal "ep02/ep_datahold<7>" is sourceless and has been removed.
+ Sourceless block "ep02/ep_dataout_7" (SFF) removed.
+The signal "ep02/ep_datahold<8>" is sourceless and has been removed.
+ Sourceless block "ep02/ep_dataout_8" (SFF) removed.
+The signal "ep02/ep_datahold<9>" is sourceless and has been removed.
+ Sourceless block "ep02/ep_dataout_9" (SFF) removed.
+The signal "ep02/ep_datahold<10>" is sourceless and has been removed.
+ Sourceless block "ep02/ep_dataout_10" (SFF) removed.
+The signal "ep02/ep_datahold<11>" is sourceless and has been removed.
+ Sourceless block "ep02/ep_dataout_11" (SFF) removed.
+The signal "ep02/ep_datahold<12>" is sourceless and has been removed.
+ Sourceless block "ep02/ep_dataout_12" (SFF) removed.
+The signal "ep02/ep_datahold<13>" is sourceless and has been removed.
+ Sourceless block "ep02/ep_dataout_13" (SFF) removed.
+The signal "ep02/ep_datahold<14>" is sourceless and has been removed.
+ Sourceless block "ep02/ep_dataout_14" (SFF) removed.
+The signal "ep02/ep_datahold<15>" is sourceless and has been removed.
+ Sourceless block "ep02/ep_dataout_15" (SFF) removed.
+The signal "ep01/ep_dataout<15>" is sourceless and has been removed.
+The signal "ep01/ep_dataout<14>" is sourceless and has been removed.
+The signal "ep01/ep_dataout<13>" is sourceless and has been removed.
+The signal "ep01/ep_dataout<12>" is sourceless and has been removed.
+The signal "ep01/ep_dataout<11>" is sourceless and has been removed.
+The signal "ep01/ep_dataout<10>" is sourceless and has been removed.
+The signal "ep01/ep_dataout<9>" is sourceless and has been removed.
+The signal "ep01/ep_dataout<8>" is sourceless and has been removed.
+The signal "ep01/ep_dataout<7>" is sourceless and has been removed.
+The signal "ep01/ep_dataout<6>" is sourceless and has been removed.
+The signal "ep01/ep_dataout<5>" is sourceless and has been removed.
+The signal "ep01/ep_dataout<4>" is sourceless and has been removed.
+The signal "ep01/ep_dataout<3>" is sourceless and has been removed.
+The signal "ep01/ep_dataout<2>" is sourceless and has been removed.
+The signal "ep01/ep_dataout<1>" is sourceless and has been removed.
+The signal "ep01/ep_datahold<1>" is sourceless and has been removed.
+ Sourceless block "ep01/ep_dataout_1" (SFF) removed.
+The signal "ep01/ep_datahold<2>" is sourceless and has been removed.
+ Sourceless block "ep01/ep_dataout_2" (SFF) removed.
+The signal "ep01/ep_datahold<3>" is sourceless and has been removed.
+ Sourceless block "ep01/ep_dataout_3" (SFF) removed.
+The signal "ep01/ep_datahold<4>" is sourceless and has been removed.
+ Sourceless block "ep01/ep_dataout_4" (SFF) removed.
+The signal "ep01/ep_datahold<5>" is sourceless and has been removed.
+ Sourceless block "ep01/ep_dataout_5" (SFF) removed.
+The signal "ep01/ep_datahold<6>" is sourceless and has been removed.
+ Sourceless block "ep01/ep_dataout_6" (SFF) removed.
+The signal "ep01/ep_datahold<7>" is sourceless and has been removed.
+ Sourceless block "ep01/ep_dataout_7" (SFF) removed.
+The signal "ep01/ep_datahold<8>" is sourceless and has been removed.
+ Sourceless block "ep01/ep_dataout_8" (SFF) removed.
+The signal "ep01/ep_datahold<9>" is sourceless and has been removed.
+ Sourceless block "ep01/ep_dataout_9" (SFF) removed.
+The signal "ep01/ep_datahold<10>" is sourceless and has been removed.
+ Sourceless block "ep01/ep_dataout_10" (SFF) removed.
+The signal "ep01/ep_datahold<11>" is sourceless and has been removed.
+ Sourceless block "ep01/ep_dataout_11" (SFF) removed.
+The signal "ep01/ep_datahold<12>" is sourceless and has been removed.
+ Sourceless block "ep01/ep_dataout_12" (SFF) removed.
+The signal "ep01/ep_datahold<13>" is sourceless and has been removed.
+ Sourceless block "ep01/ep_dataout_13" (SFF) removed.
+The signal "ep01/ep_datahold<14>" is sourceless and has been removed.
+ Sourceless block "ep01/ep_dataout_14" (SFF) removed.
+The signal "ep01/ep_datahold<15>" is sourceless and has been removed.
+ Sourceless block "ep01/ep_dataout_15" (SFF) removed.
 The signal "ep00/ep_dataout<15>" is sourceless and has been removed.
 The signal "ep00/ep_dataout<14>" is sourceless and has been removed.
 The signal "ep00/ep_dataout<13>" is sourceless and has been removed.
@@ -173,6 +263,27 @@ The signal "ep00/ep_dataout<11>" is sourceless and has been removed.
 The signal "ep00/ep_dataout<10>" is sourceless and has been removed.
 The signal "ep00/ep_dataout<9>" is sourceless and has been removed.
 The signal "ep00/ep_dataout<8>" is sourceless and has been removed.
+The signal "ep00/ep_dataout<7>" is sourceless and has been removed.
+The signal "ep00/ep_dataout<6>" is sourceless and has been removed.
+The signal "ep00/ep_dataout<5>" is sourceless and has been removed.
+The signal "ep00/ep_dataout<4>" is sourceless and has been removed.
+The signal "ep00/ep_dataout<3>" is sourceless and has been removed.
+The signal "ep00/ep_dataout<2>" is sourceless and has been removed.
+The signal "ep00/ep_dataout<1>" is sourceless and has been removed.
+The signal "ep00/ep_datahold<1>" is sourceless and has been removed.
+ Sourceless block "ep00/ep_dataout_1" (SFF) removed.
+The signal "ep00/ep_datahold<2>" is sourceless and has been removed.
+ Sourceless block "ep00/ep_dataout_2" (SFF) removed.
+The signal "ep00/ep_datahold<3>" is sourceless and has been removed.
+ Sourceless block "ep00/ep_dataout_3" (SFF) removed.
+The signal "ep00/ep_datahold<4>" is sourceless and has been removed.
+ Sourceless block "ep00/ep_dataout_4" (SFF) removed.
+The signal "ep00/ep_datahold<5>" is sourceless and has been removed.
+ Sourceless block "ep00/ep_dataout_5" (SFF) removed.
+The signal "ep00/ep_datahold<6>" is sourceless and has been removed.
+ Sourceless block "ep00/ep_dataout_6" (SFF) removed.
+The signal "ep00/ep_datahold<7>" is sourceless and has been removed.
+ Sourceless block "ep00/ep_dataout_7" (SFF) removed.
 The signal "ep00/ep_datahold<8>" is sourceless and has been removed.
  Sourceless block "ep00/ep_dataout_8" (SFF) removed.
 The signal "ep00/ep_datahold<9>" is sourceless and has been removed.
@@ -189,25 +300,76 @@ The signal "ep00/ep_datahold<14>" is sourceless and has been removed.
  Sourceless block "ep00/ep_dataout_14" (SFF) removed.
 The signal "ep00/ep_datahold<15>" is sourceless and has been removed.
  Sourceless block "ep00/ep_dataout_15" (SFF) removed.
-The signal "pipeOutA3/ep_read" is sourceless and has been removed.
-The signal "pipeOutA3/ep_blockstrobe" is sourceless and has been removed.
-The signal "pipeOutA3/ti_addr[7]_ep_addr[7]_equal_4_o" is sourceless and has
-been removed.
- Sourceless block "pipeOutA3/ep_read1" (ROM) removed.
- Sourceless block "pipeOutA3/ep_blockstrobe1" (ROM) removed.
-The signal "pipeOutA3/ti_addr[7]_ep_addr[7]_equal_4_o8" is sourceless and has
-been removed.
- Sourceless block "pipeOutA3/ti_addr[7]_ep_addr[7]_equal_4_o83" (ROM) removed.
-The signal "pipeOutA3/ti_addr[7]_ep_addr[7]_equal_4_o81" is sourceless and has
-been removed.
-The signal "okHI/hicore/state[31]_GND_1_o_Select_94_o" is sourceless and has
-been removed.
- Sourceless block "okHI/hicore/ti_read" (SFF) removed.
-  The signal "ok1<26>" is sourceless and has been removed.
+The signal "pipeOutA0/ep_blockstrobe" is sourceless and has been removed.
+The signal "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<1>" is sourceless
+and has been removed.
+ Sourceless block "okHI/hicore/ti_dataout_1" (FF) removed.
+  The signal "ok1<1>" is sourceless and has been removed.
+   Sourceless block "ep02/ep_datahold_1" (SFF) removed.
+   Sourceless block "ep01/ep_datahold_1" (SFF) removed.
+   Sourceless block "ep00/ep_datahold_1" (SFF) removed.
+   Sourceless block "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<1>1" (ROM)
+removed.
+The signal "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<2>" is sourceless
+and has been removed.
+ Sourceless block "okHI/hicore/ti_dataout_2" (FF) removed.
+  The signal "ok1<2>" is sourceless and has been removed.
+   Sourceless block "ep02/ep_datahold_2" (SFF) removed.
+   Sourceless block "ep01/ep_datahold_2" (SFF) removed.
+   Sourceless block "ep00/ep_datahold_2" (SFF) removed.
+   Sourceless block "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<2>1" (ROM)
+removed.
+The signal "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<3>" is sourceless
+and has been removed.
+ Sourceless block "okHI/hicore/ti_dataout_3" (FF) removed.
+  The signal "ok1<3>" is sourceless and has been removed.
+   Sourceless block "ep02/ep_datahold_3" (SFF) removed.
+   Sourceless block "ep01/ep_datahold_3" (SFF) removed.
+   Sourceless block "ep00/ep_datahold_3" (SFF) removed.
+   Sourceless block "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<3>1" (ROM)
+removed.
+The signal "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<4>" is sourceless
+and has been removed.
+ Sourceless block "okHI/hicore/ti_dataout_4" (FF) removed.
+  The signal "ok1<4>" is sourceless and has been removed.
+   Sourceless block "ep02/ep_datahold_4" (SFF) removed.
+   Sourceless block "ep01/ep_datahold_4" (SFF) removed.
+   Sourceless block "ep00/ep_datahold_4" (SFF) removed.
+   Sourceless block "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<4>1" (ROM)
+removed.
+The signal "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<5>" is sourceless
+and has been removed.
+ Sourceless block "okHI/hicore/ti_dataout_5" (FF) removed.
+  The signal "ok1<5>" is sourceless and has been removed.
+   Sourceless block "ep02/ep_datahold_5" (SFF) removed.
+   Sourceless block "ep01/ep_datahold_5" (SFF) removed.
+   Sourceless block "ep00/ep_datahold_5" (SFF) removed.
+   Sourceless block "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<5>1" (ROM)
+removed.
+The signal "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<6>" is sourceless
+and has been removed.
+ Sourceless block "okHI/hicore/ti_dataout_6" (FF) removed.
+  The signal "ok1<6>" is sourceless and has been removed.
+   Sourceless block "ep02/ep_datahold_6" (SFF) removed.
+   Sourceless block "ep01/ep_datahold_6" (SFF) removed.
+   Sourceless block "ep00/ep_datahold_6" (SFF) removed.
+   Sourceless block "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<6>1" (ROM)
+removed.
+The signal "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<7>" is sourceless
+and has been removed.
+ Sourceless block "okHI/hicore/ti_dataout_7" (FF) removed.
+  The signal "ok1<7>" is sourceless and has been removed.
+   Sourceless block "ep02/ep_datahold_7" (SFF) removed.
+   Sourceless block "ep01/ep_datahold_7" (SFF) removed.
+   Sourceless block "ep00/ep_datahold_7" (SFF) removed.
+   Sourceless block "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<7>1" (ROM)
+removed.
 The signal "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<8>" is sourceless
 and has been removed.
  Sourceless block "okHI/hicore/ti_dataout_8" (FF) removed.
   The signal "ok1<8>" is sourceless and has been removed.
+   Sourceless block "ep02/ep_datahold_8" (SFF) removed.
+   Sourceless block "ep01/ep_datahold_8" (SFF) removed.
    Sourceless block "ep00/ep_datahold_8" (SFF) removed.
    Sourceless block "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<8>1" (ROM)
 removed.
@@ -215,6 +377,8 @@ The signal "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<9>" is sourceless
 and has been removed.
  Sourceless block "okHI/hicore/ti_dataout_9" (FF) removed.
   The signal "ok1<9>" is sourceless and has been removed.
+   Sourceless block "ep02/ep_datahold_9" (SFF) removed.
+   Sourceless block "ep01/ep_datahold_9" (SFF) removed.
    Sourceless block "ep00/ep_datahold_9" (SFF) removed.
    Sourceless block "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<9>1" (ROM)
 removed.
@@ -222,6 +386,8 @@ The signal "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<10>" is
 sourceless and has been removed.
  Sourceless block "okHI/hicore/ti_dataout_10" (FF) removed.
   The signal "ok1<10>" is sourceless and has been removed.
+   Sourceless block "ep02/ep_datahold_10" (SFF) removed.
+   Sourceless block "ep01/ep_datahold_10" (SFF) removed.
    Sourceless block "ep00/ep_datahold_10" (SFF) removed.
    Sourceless block "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<10>1" (ROM)
 removed.
@@ -229,6 +395,8 @@ The signal "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<11>" is
 sourceless and has been removed.
  Sourceless block "okHI/hicore/ti_dataout_11" (FF) removed.
   The signal "ok1<11>" is sourceless and has been removed.
+   Sourceless block "ep02/ep_datahold_11" (SFF) removed.
+   Sourceless block "ep01/ep_datahold_11" (SFF) removed.
    Sourceless block "ep00/ep_datahold_11" (SFF) removed.
    Sourceless block "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<11>1" (ROM)
 removed.
@@ -236,6 +404,8 @@ The signal "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<12>" is
 sourceless and has been removed.
  Sourceless block "okHI/hicore/ti_dataout_12" (FF) removed.
   The signal "ok1<12>" is sourceless and has been removed.
+   Sourceless block "ep02/ep_datahold_12" (SFF) removed.
+   Sourceless block "ep01/ep_datahold_12" (SFF) removed.
    Sourceless block "ep00/ep_datahold_12" (SFF) removed.
    Sourceless block "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<12>1" (ROM)
 removed.
@@ -243,6 +413,8 @@ The signal "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<13>" is
 sourceless and has been removed.
  Sourceless block "okHI/hicore/ti_dataout_13" (FF) removed.
   The signal "ok1<13>" is sourceless and has been removed.
+   Sourceless block "ep02/ep_datahold_13" (SFF) removed.
+   Sourceless block "ep01/ep_datahold_13" (SFF) removed.
    Sourceless block "ep00/ep_datahold_13" (SFF) removed.
    Sourceless block "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<13>1" (ROM)
 removed.
@@ -250,6 +422,8 @@ The signal "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<14>" is
 sourceless and has been removed.
  Sourceless block "okHI/hicore/ti_dataout_14" (FF) removed.
   The signal "ok1<14>" is sourceless and has been removed.
+   Sourceless block "ep02/ep_datahold_14" (SFF) removed.
+   Sourceless block "ep01/ep_datahold_14" (SFF) removed.
    Sourceless block "ep00/ep_datahold_14" (SFF) removed.
    Sourceless block "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<14>1" (ROM)
 removed.
@@ -257,6 +431,8 @@ The signal "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<15>" is
 sourceless and has been removed.
  Sourceless block "okHI/hicore/ti_dataout_15" (FF) removed.
   The signal "ok1<15>" is sourceless and has been removed.
+   Sourceless block "ep02/ep_datahold_15" (SFF) removed.
+   Sourceless block "ep01/ep_datahold_15" (SFF) removed.
    Sourceless block "ep00/ep_datahold_15" (SFF) removed.
    Sourceless block "okHI/hicore/state[31]_ti_dataout[15]_select_91_OUT<15>1" (ROM)
 removed.
@@ -270,7 +446,6 @@ The trimmed logic reported below is either:
    2. part of disabled logic
    3. a side-effect of other trimmed logic
 
-The signal "N1" is unused and has been removed.
 The signal "ok1<30>" is unused and has been removed.
  Unused block "okHI/hicore/ti_blockstrobe" (SFF) removed.
 The signal "okHI/iodly0_datain<15>" is unused and has been removed.
@@ -298,87 +473,25 @@ The signal "okHI/hi_datain<12>" is unused and has been removed.
  Unused block "okHI/delays[12].fdrein0" (SFF) removed.
 The signal "okHI/hi_datain<11>" is unused and has been removed.
  Unused block "okHI/delays[11].fdrein0" (SFF) removed.
-The signal "okHI/hi_dataout<14>" is unused and has been removed.
-The signal "okHI/hi_dataout<12>" is unused and has been removed.
-The signal "okHI/hi_dataout<11>" is unused and has been removed.
-The signal "okHI/hi_dataout<9>" is unused and has been removed.
-The signal "okHI/hi_dataout<5>" is unused and has been removed.
-The signal "okHI/hi_dataout<3>" is unused and has been removed.
 Unused block "okHI/delays[11].iodelay_inst" (IODELAY2) removed.
 Unused block "okHI/delays[12].iodelay_inst" (IODELAY2) removed.
 Unused block "okHI/delays[13].iodelay_inst" (IODELAY2) removed.
 Unused block "okHI/delays[14].iodelay_inst" (IODELAY2) removed.
 Unused block "okHI/delays[15].iodelay_inst" (IODELAY2) removed.
 Unused block "okHI/hicore/Mmux_GND_1_o_host_datain[2]_MUX_51_o11" (ROM) removed.
-Unused block "okHI/hicore/state_state[31]_GND_1_o_Select_94_o1" (ROM) removed.
-Unused block "pipeOutA3/ti_addr[7]_ep_addr[7]_equal_4_o81" (ROM) removed.
-Unused block "pipeOutA3/ti_addr[7]_ep_addr[7]_equal_4_o82" (ROM) removed.
+Unused block "pipeOutA0/ep_blockstrobe1" (ROM) removed.
 
 Optimized Block(s):
 TYPE 		BLOCK
 GND 		XST_GND
 VCC 		XST_VCC
-FDRE 		okHI/delays[11].fdreout0
-   optimized to 0
-FDRE 		okHI/delays[12].fdreout0
-   optimized to 0
-FDRE 		okHI/delays[14].fdreout0
-   optimized to 0
-FDRE 		okHI/delays[3].fdreout0
-   optimized to 0
-FDRE 		okHI/delays[5].fdreout0
-   optimized to 0
-FDRE 		okHI/delays[9].fdreout0
-   optimized to 0
-LUT2 		okHI/hicore/Mmux_hi_dataout111
-   optimized to 0
-LUT2 		okHI/hicore/Mmux_hi_dataout131
-   optimized to 0
-LUT2 		okHI/hicore/Mmux_hi_dataout21
-   optimized to 0
-LUT2 		okHI/hicore/Mmux_hi_dataout41
-   optimized to 0
-LUT2 		okHI/hicore/Mmux_hi_dataout51
-   optimized to 0
-LUT2 		okHI/hicore/Mmux_hi_dataout71
-   optimized to 0
 GND 		okHI/hicore/XST_GND
 VCC 		okHI/hicore/XST_VCC
-INV 		okHI/hicore/hi_busy_rstpot1_INV_0
-LUT2 		pipeOutA3/Mmux_ok2101
-   optimized to 0
-LUT2 		pipeOutA3/Mmux_ok211
-   optimized to 0
-LUT2 		pipeOutA3/Mmux_ok2111
-   optimized to 0
-LUT2 		pipeOutA3/Mmux_ok2121
-   optimized to 0
-LUT2 		pipeOutA3/Mmux_ok2131
-   optimized to 0
-LUT2 		pipeOutA3/Mmux_ok2141
-   optimized to 0
-LUT2 		pipeOutA3/Mmux_ok2151
-   optimized to 0
-LUT2 		pipeOutA3/Mmux_ok2161
-   optimized to 0
-LUT2 		pipeOutA3/Mmux_ok2171
-   optimized to 0
-LUT2 		pipeOutA3/Mmux_ok221
-   optimized to 0
-LUT2 		pipeOutA3/Mmux_ok231
-   optimized to 0
-LUT2 		pipeOutA3/Mmux_ok241
-   optimized to 0
-LUT2 		pipeOutA3/Mmux_ok251
-   optimized to 0
-LUT2 		pipeOutA3/Mmux_ok261
-   optimized to 0
-LUT2 		pipeOutA3/Mmux_ok271
-   optimized to 0
-LUT2 		pipeOutA3/Mmux_ok281
-   optimized to 0
-LUT2 		pipeOutA3/Mmux_ok291
-   optimized to 0
+GND
+		transfer/X0/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.mem/gb
+m.gbmg.gbmga.ngecc.bmg/gnativebmg.native_blk_mem_gen/valid.cstr/XST_GND
+GND 		transfer/X0/XST_GND
+VCC 		transfer/X0/XST_VCC
 
 To enable printing of redundant blocks removed and signals merged, set the
 detailed map report option and rerun map.
@@ -390,6 +503,8 @@ Section 6 - IOB Properties
 | IOB Name                           | Type             | Direction | IO Standard          | Diff  | Drive    | Slew | Reg (s)      | Resistor | IOB      |
 |                                    |                  |           |                      | Term  | Strength | Rate |              |          | Delay    |
 +---------------------------------------------------------------------------------------------------------------------------------------------------------+
+| clock                              | IOB              | INPUT     | LVCMOS33             |       |          |      |              |          |          |
+| clock2                             | IOB              | INPUT     | LVCMOS33             |       |          |      |              |          |          |
 | hi_in<0>                           | IOB              | INPUT     | LVCMOS33             |       |          |      |              |          |          |
 | hi_in<1>                           | IOB              | INPUT     | LVCMOS33             |       |          |      |              |          |          |
 | hi_in<2>                           | IOB              | INPUT     | LVCMOS33             |       |          |      |              |          |          |
@@ -408,11 +523,13 @@ Section 6 - IOB Properties
 |                                    |                  |           |                      |       |          |      | OFF          |          |          |
 |                                    |                  |           |                      |       |          |      | TFF          |          |          |
 | hi_inout<3>                        | IOB              | BIDIR     | LVCMOS33             |       | 12       | SLOW | IFF          |          | FIXED    |
+|                                    |                  |           |                      |       |          |      | OFF          |          |          |
 |                                    |                  |           |                      |       |          |      | TFF          |          |          |
 | hi_inout<4>                        | IOB              | BIDIR     | LVCMOS33             |       | 12       | SLOW | IFF          |          | FIXED    |
 |                                    |                  |           |                      |       |          |      | OFF          |          |          |
 |                                    |                  |           |                      |       |          |      | TFF          |          |          |
 | hi_inout<5>                        | IOB              | BIDIR     | LVCMOS33             |       | 12       | SLOW | IFF          |          | FIXED    |
+|                                    |                  |           |                      |       |          |      | OFF          |          |          |
 |                                    |                  |           |                      |       |          |      | TFF          |          |          |
 | hi_inout<6>                        | IOB              | BIDIR     | LVCMOS33             |       | 12       | SLOW | IFF          |          | FIXED    |
 |                                    |                  |           |                      |       |          |      | OFF          |          |          |
@@ -424,28 +541,24 @@ Section 6 - IOB Properties
 |                                    |                  |           |                      |       |          |      | OFF          |          |          |
 |                                    |                  |           |                      |       |          |      | TFF          |          |          |
 | hi_inout<9>                        | IOB              | BIDIR     | LVCMOS33             |       | 12       | SLOW | IFF          |          | FIXED    |
+|                                    |                  |           |                      |       |          |      | OFF          |          |          |
 |                                    |                  |           |                      |       |          |      | TFF          |          |          |
 | hi_inout<10>                       | IOB              | BIDIR     | LVCMOS33             |       | 12       | SLOW | IFF          |          | FIXED    |
 |                                    |                  |           |                      |       |          |      | OFF          |          |          |
 |                                    |                  |           |                      |       |          |      | TFF          |          |          |
-| hi_inout<11>                       | IOB              | OUTPUT    | LVCMOS33             |       | 12       | SLOW | TFF          |          |          |
-| hi_inout<12>                       | IOB              | OUTPUT    | LVCMOS33             |       | 12       | SLOW | TFF          |          |          |
+| hi_inout<11>                       | IOB              | OUTPUT    | LVCMOS33             |       | 12       | SLOW | OFF          |          |          |
+|                                    |                  |           |                      |       |          |      | TFF          |          |          |
+| hi_inout<12>                       | IOB              | OUTPUT    | LVCMOS33             |       | 12       | SLOW | OFF          |          |          |
+|                                    |                  |           |                      |       |          |      | TFF          |          |          |
 | hi_inout<13>                       | IOB              | OUTPUT    | LVCMOS33             |       | 12       | SLOW | OFF          |          |          |
 |                                    |                  |           |                      |       |          |      | TFF          |          |          |
-| hi_inout<14>                       | IOB              | OUTPUT    | LVCMOS33             |       | 12       | SLOW | TFF          |          |          |
+| hi_inout<14>                       | IOB              | OUTPUT    | LVCMOS33             |       | 12       | SLOW | OFF          |          |          |
+|                                    |                  |           |                      |       |          |      | TFF          |          |          |
 | hi_inout<15>                       | IOB              | OUTPUT    | LVCMOS33             |       | 12       | SLOW | OFF          |          |          |
 |                                    |                  |           |                      |       |          |      | TFF          |          |          |
 | hi_muxsel                          | IOB              | OUTPUT    | LVCMOS33             |       | 12       | SLOW |              |          |          |
 | hi_out<0>                          | IOB              | OUTPUT    | LVCMOS33             |       | 12       | SLOW |              |          |          |
 | hi_out<1>                          | IOB              | OUTPUT    | LVCMOS33             |       | 12       | SLOW |              |          |          |
-| led<0>                             | IOB              | OUTPUT    | LVCMOS33             |       | 12       | SLOW |              |          |          |
-| led<1>                             | IOB              | OUTPUT    | LVCMOS33             |       | 12       | SLOW |              |          |          |
-| led<2>                             | IOB              | OUTPUT    | LVCMOS33             |       | 12       | SLOW |              |          |          |
-| led<3>                             | IOB              | OUTPUT    | LVCMOS33             |       | 12       | SLOW |              |          |          |
-| led<4>                             | IOB              | OUTPUT    | LVCMOS33             |       | 12       | SLOW |              |          |          |
-| led<5>                             | IOB              | OUTPUT    | LVCMOS33             |       | 12       | SLOW |              |          |          |
-| led<6>                             | IOB              | OUTPUT    | LVCMOS33             |       | 12       | SLOW |              |          |          |
-| led<7>                             | IOB              | OUTPUT    | LVCMOS33             |       | 12       | SLOW |              |          |          |
 +---------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Section 7 - RPMs

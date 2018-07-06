@@ -20,7 +20,7 @@ wire [30:0] ok1;
 wire [16:0] ok2;
 
 // Endpoint connections:
-wire [15:0]  ep00wire;
+// wire [15:0]  ep00wire;
 
 wire [15:0]  epA3pipe;
 wire         epA3read;

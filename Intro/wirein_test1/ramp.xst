@@ -1,11 +1,8 @@
-set -tmpdir "xst/projnav.tmp"
-set -xsthdpdir "xst"
-run
--ifn wirein_test1.prj
--ofn wirein_test1
--ofmt NGC
+set -tmpdir "C:/Users/Nanolab3/Desktop/Mayank/verilog/wirein_test1/xst/projnav.tmp"
+set -xsthdpdir "C:/Users/Nanolab3/Desktop/Mayank/verilog/wirein_test1/xst"
+run -compileonly yes
 -p xc6slx16-2-ftg256
--top wirein_test1
+-top ramp
 -opt_mode Speed
 -opt_level 1
 -power NO
@@ -51,3 +48,4 @@ run
 -iob Auto
 -equivalent_register_removal YES
 -slice_utilization_ratio_maxmargin 5
+-ifn ramp.prj

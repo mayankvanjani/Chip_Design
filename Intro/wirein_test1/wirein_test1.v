@@ -27,39 +27,48 @@ wire [15:0]  ep01wire;
 wire enable;
 wire [15:0]  ep02wire;
 wire reset_transfer;
+wire [15:0]  tmp_1;
+wire [15:0] tmp_2;
 
-
-wire [15:0]  epA3pipe;
-wire         epA3read;
-wire         epA3_blockSTROBE;
-wire         epA3_ready;
+wire [15:0]  epA0pipe;
+wire         epA0read;
+wire         epA0_blockSTROBE;
+wire         epA0_ready;
 
 wire [6:0] data_out;
+wire       clk_bar;
 
 assign reset = ep00wire[0];
 assign enable = ep01wire[0];
 assign reset_transfer = ep02wire[0];
+assign tmp_1 = {9'd0,7'd23};
+assign tmp_2 = {9'd0, data_out};
+// assign tmp_2 = {9'd0,7'b0101010};
+assign clk_bar = ~clock;
 
 ramp test (
-	.reset	(reset),
+	.reset	(~reset),
 	.enable	(enable),
 	.data_out	(data_out),
 	.clock	(clock)
 );
 
 CIC_data_transferFIFO transfer (
-	.reset (reset),
+	.reset (reset_transfer),
 	.write_clk (clock),
 	.read_clk (clock2),
-	.data_in ({9'd0, data_out}),
-	.ep_read (epA3read),
-	.data_out (epA3pipe),
-	.ep_ready  (epA3_ready)
+	.data_in (tmp_2),
+	.ep_read (epA0read),
+	.data_out (epA0pipe),
+	.ep_ready  (epA0_ready)
 );
 
+wire [17*1-1:0]  ok2x;
 okHost okHI(
 	.hi_in(hi_in), .hi_out(hi_out), .hi_inout(hi_inout), .ti_clk(ti_clk),
 	.ok1(ok1), .ok2(ok2));
+
+okWireOR # (.N(1)) wireOR (.ok2(ok2), .ok2s(ok2x));
 
 okWireIn     ep00 (.ok1(ok1),                          .ep_addr(8'h00), .ep_dataout(ep00wire));
 okWireIn     ep01 (.ok1(ok1),                          .ep_addr(8'h01), .ep_dataout(ep01wire));
@@ -69,6 +78,6 @@ okWireIn     ep02 (.ok1(ok1),                          .ep_addr(8'h02), .ep_data
 
 // okBTPipeOut pipeOutA3 (.ok1(ok1), .ok2(ok2) .ep_addr(8’ha3), .ep_datain(epA3pipe), .ep_read(epA3read), .ep_blockstrobe(epA3strobe), .ep_ready(epA3ready)); 
 // okBTPipeOut pipeOutA3 (.ok1(ok1), .ok2(ok2), .ep_addr(8'h00), .ep_datain(ep00pipe), .ep_read(ep00read), .ep_blockstrobe(ep00strobe), .ep_ready(ep00ready)); 
-okBTPipeOut  BTpipeOutA3 (.ok1(ok1), .ok2(ok2), .ep_addr(8'ha3), .ep_datain(epA3pipe), .ep_read(epA3read),  .ep_blockstrobe(epA3_blockSTROBE), .ep_ready(epA3_ready));
+okBTPipeOut  pipeOutA0 (.ok1(ok1), .ok2(ok2x[ 0*17 +: 17 ]), .ep_addr(8'ha0), .ep_datain(epA0pipe), .ep_read(epA0read),  .ep_blockstrobe(epA0_blockSTROBE), .ep_ready(epA0_ready));
 
 endmodule
