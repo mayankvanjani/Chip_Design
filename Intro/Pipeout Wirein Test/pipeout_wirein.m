@@ -94,6 +94,7 @@ function enable_Callback(hObject, eventdata, handles)
 
 %disp('hello world enable');
 
+t = 0:.001:
 disp('testing');
 
 % --- Executes on button press in test_signal.
